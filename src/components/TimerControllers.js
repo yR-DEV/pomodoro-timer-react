@@ -7,7 +7,6 @@ export default class TimerControllers extends Component {
     render() {
         return (
             <div className="timer-controllers">
-                <h1>TIMER CONTROLELRS</h1>
                 <Work 
                     workTime={this.props.workTime}
                     increaseWorkTime={this.props.increaseWorkTime}
