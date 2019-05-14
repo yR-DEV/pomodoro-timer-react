@@ -8,8 +8,16 @@ export default class TimerControllers extends Component {
         return (
             <div className="timer-controllers">
                 <h1>TIMER CONTROLELRS</h1>
-                <Break />
-                <Work />
+                <Work 
+                    workTime={this.props.workTime}
+                    increaseWorkTime={this.props.increaseWorkTime}
+                    decreaseWorkTime={this.props.decreaseWorkTime}
+                />
+                <Break 
+                    breakTime={this.props.breakTime}
+                    increaseBreakTime={this.props.increaseBreakTime}
+                    decreaseBreakTime={this.props.decreaseBreakTime}
+                />
             </div>    
         );
     }
