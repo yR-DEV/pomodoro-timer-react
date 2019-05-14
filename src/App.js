@@ -8,7 +8,7 @@ export default class App extends Component {
   render() {
     return (
       <div className="app-main">
-        <h1>P O M O T I M 3 R</h1>
+        <h1>P O M O - T I M 3 R</h1>
         <Timer />
         <TimerControllers />
       </div>
