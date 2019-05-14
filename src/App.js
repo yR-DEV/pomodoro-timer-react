@@ -9,7 +9,7 @@ export default class App extends Component {
     super();
     this.state = {
       idTime: 0,
-      toggleTimer: true,
+      toggleTimer: false,
       cycle: "Session",
       workTime: 25,
       breakTime: 5,
@@ -17,25 +17,23 @@ export default class App extends Component {
     }
   }
 
-  startPomoTimer = (timerLength) => {
-    console.log('we are in start timer', timerLength);
-
+  startPomoTimer = () => {
+    // console.log('we are in start timer', timerLength);
+    console.log('toggle timer');
+    
   }
 
   setCurrentTime = (amountOfTime) => {
-    console.log('we are in set current time', amountOfTime);
+    this.state.currentTime = amountOfTime
+    console.log(amountOfTime);
   }
 
-  setToggleTimer = () => {
-    // console.log('inside of set timer running', this.state.toggleTimer);
-    if (this.state.toggleTimer) {
-      console.log('ITS FALSE');
-      
-      this.state.toggleTimer = false;
+  setToggleTimer = (time) => {
+    console.log(this.state.toggleTimer);
+    if (this.state.toggleTimer === false) {
+      this.state.toggleTimer = true
     } else {
-      console.log('ITRS TRUE');
-      
-      this.state.toggleTimer = true;
+      this.state.toggleTimer = false;
     }
   }
 
@@ -43,26 +41,28 @@ export default class App extends Component {
     this.setState({
       workTime: this.state.workTime += 1
     })
+    this.setCurrentTime(this.state.workTime)
   }
 
   decreaseWorkTime = () => {
     this.setState({
       workTime: this.state.workTime -= 1
     })
+    this.setCurrentTime(this.state.workTime)
   }
 
   increaseBreakTime = () => {
-    console.log('here');
-    
     this.setState({
       breakTime: this.state.breakTime += 1
     })
+    this.setCurrentTime(this.state.breakTime)
   }
 
   decreaseBreakTime = () => {
     this.setState({
       breakTime: this.state.breakTime -= 1
     })
+    this.setCurrentTime(this.state.breakTime)
   }
 
   render () {
@@ -83,6 +83,8 @@ export default class App extends Component {
           decreaseWorkTime={this.decreaseWorkTime}
           increaseBreakTime={this.increaseBreakTime}
           decreaseBreakTime={this.decreaseBreakTime}
+          setCurrentTime={this.setCurrentTime}
+          setToggleTimer={this.setToggleTimer}
         />
       </div>
     );

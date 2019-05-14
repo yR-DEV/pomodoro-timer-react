@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 
 export default class Work extends Component {
     handleWorkIncrease = (event) => {
+        console.log(this.props);
+        
         this.props.increaseWorkTime();
     }
 
