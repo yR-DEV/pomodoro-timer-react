@@ -10,39 +10,44 @@ export default class App extends Component {
     this.state = {
       idTime: 0,
       toggleTimer: false,
-      cycle: "Session",
+      cycle: "Work",
       workTime: 25,
       breakTime: 5,
-      currentTime: "25 : 00"
+      currentTime: 25
     }
   }
 
-  startPomoTimer = (timeType) => {
-    // console.log('we are in start timer', timerLength);
-    console.log('-----inside start timer-------');
-    console.log(timeType);
-    if (this.state.cycle === "Session") {
-      this.state.currentTime = this.state.workTime
-    } else {
-      this.state.currentTime = this.state.breakTime
-    }
-    
+  startPomoTimer = (timerLength) => {
+    // console.log(timerLength);
+    let time = timerLength * 60
+    // console.log(time);
+    let runningTimer = setInterval(() => {
+      this.setState({
+        idTimer: runningTimer
+      })
+      time -= 1
+      this.setState({
+        currentTime: `${time}`
+      })
+    }, 1000)
   }
 
   setCurrentTime = (amountOfTime) => {
     this.state.currentTime = amountOfTime
-    // console.log(amountOfTime);
   }
 
   setToggleTimer = () => {
-    if (this.state.toggleTimer === false) {
-      console.log('turning timer on');
-      this.state.toggleTimer = true
-      this.startPomoTimer(this.state.currentTime)
-    } else if (this.state.toggleTimer === true) {
-      console.log('turning timer off');
-      
+    if (this.state.toggleTimer) {
+      clearInterval(this.state.idTimer)
+      this.state.currentTime = 25;
       this.state.toggleTimer = false;
+    } else {
+      this.state.toggleTimer = true;
+      if (this.state.cycle === "Work"){
+        this.startPomoTimer(this.state.workTime)
+      } else if (this.state.cycle === "Break") {
+        this.startPomoTimer(this.state.breakTime)
+      }  
     }
   }
 
@@ -51,7 +56,7 @@ export default class App extends Component {
       workTime: this.state.workTime += 1
     })
     this.setCurrentTime(this.state.workTime)
-    this.state.cycle = "Session"
+    this.state.cycle = "Work"
   }
 
   decreaseWorkTime = () => {
@@ -59,7 +64,7 @@ export default class App extends Component {
       workTime: this.state.workTime -= 1
     })
     this.setCurrentTime(this.state.workTime)
-    this.state.cycle = "Session"
+    this.state.cycle = "Work"
   }
 
   increaseBreakTime = () => {
@@ -82,7 +87,10 @@ export default class App extends Component {
     return (
       <div className="app-main">
         <h1>P O M O - T I M 3 R</h1>
-        <Timer 
+        <Timer
+          cycle={this.state.cycle} 
+          workTime={this.state.workTime}
+          breakTime={this.state.breakTime}
           toggleTimer={this.state.toggleTimer}
           startPomoTimer={this.startPomoTimer}
           currentTime={this.state.currentTime}
@@ -90,14 +98,14 @@ export default class App extends Component {
           setToggleTimer={this.setToggleTimer}
         />
         <TimerControllers 
+          toggleTimer={this.state.toggleTimer}
           workTime={this.state.workTime}
           breakTime={this.state.breakTime}
+          setCurrentTime={this.setCurrentTime}
           increaseWorkTime={this.increaseWorkTime}
           decreaseWorkTime={this.decreaseWorkTime}
           increaseBreakTime={this.increaseBreakTime}
           decreaseBreakTime={this.decreaseBreakTime}
-          setCurrentTime={this.setCurrentTime}
-          setToggleTimer={this.setToggleTimer}
         />
       </div>
     );

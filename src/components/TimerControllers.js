@@ -9,17 +9,17 @@ export default class TimerControllers extends Component {
             <div className="timer-controllers">
                 <Work 
                     workTime={this.props.workTime}
+                    toggleTimer={this.props.toggleTimer}
+                    setCurrentTime={this.props.setCurrentTime}
                     increaseWorkTime={this.props.increaseWorkTime}
                     decreaseWorkTime={this.props.decreaseWorkTime}
-                    setCurrentTime={this.props.setCurrentTime}
-                    setToggleTimer={this.props.setToggleTimer}
                 />
                 <Break 
                     breakTime={this.props.breakTime}
+                    toggleTimer={this.props.toggleTimer}
+                    setCurrentTime={this.props.setCurrentTime}
                     increaseBreakTime={this.props.increaseBreakTime}
                     decreaseBreakTime={this.props.decreaseBreakTime}
-                    setCurrentTime={this.props.setCurrentTime}
-                    setToggleTimer={this.props.setToggleTimer}
                 />
             </div>    
         );
