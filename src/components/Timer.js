@@ -3,7 +3,8 @@ import React, { Component } from 'react';
 export default class Timer extends Component {
     
     timer = () => {
-        if (this.props.toggleTimer === true) {
+        if (this.props.toggleTimer === false) {
+            // console.log('timer is on we need to start');
             clearInterval(this.props.idTime)
             this.props.setCurrentTime("25 : 00")
             this.props.setToggleTimer()
