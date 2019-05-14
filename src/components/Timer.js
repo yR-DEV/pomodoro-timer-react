@@ -3,8 +3,13 @@ import React, { Component } from 'react';
 export default class Timer extends Component {
     
     timer = () => {
-        console.log('inside timer component');
-        this.props.startPomoTimer()
+        if (this.props.toggleTimer === true) {
+            clearInterval(this.props.idTime)
+            this.props.setCurrentTime("25 : 00")
+            this.props.setToggleTimer()
+        } else {
+            this.props.cycle === "session" ? this.props.startPomoTimer(this.props.workTime) : this.props.startPomoTimer(this.props.breakTime)
+        }
     }
 
     render () {

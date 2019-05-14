@@ -9,8 +9,8 @@ export default class App extends Component {
     super();
     this.state = {
       idTime: 0,
-      toggleTimer: false,
-      cycle: "Work Session",
+      toggleTimer: true,
+      cycle: "Session",
       workTime: 25,
       breakTime: 5,
       currentTime: "25 : 00"
@@ -26,8 +26,17 @@ export default class App extends Component {
     console.log('we are in set current time', amountOfTime);
   }
 
-  setTimerRunning = () => {
-    console.log('inside of set timer running', this.state.toggleTimer);
+  setToggleTimer = () => {
+    // console.log('inside of set timer running', this.state.toggleTimer);
+    if (this.state.toggleTimer) {
+      console.log('ITS FALSE');
+      
+      this.state.toggleTimer = false;
+    } else {
+      console.log('ITRS TRUE');
+      
+      this.state.toggleTimer = true;
+    }
   }
 
   increaseWorkTime = () => {
@@ -61,10 +70,11 @@ export default class App extends Component {
       <div className="app-main">
         <h1>P O M O - T I M 3 R</h1>
         <Timer 
+          toggleTimer={this.state.toggleTimer}
           startPomoTimer={this.startPomoTimer}
           currentTime={this.state.currentTime}
           setCurrentTime={this.setCurrentTime}
-          setTimerRunning={this.setTimerRunning}
+          setToggleTimer={this.setToggleTimer}
         />
         <TimerControllers 
           workTime={this.state.workTime}
