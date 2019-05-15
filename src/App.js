@@ -18,31 +18,35 @@ export default class App extends Component {
   }
 
   startPomoTimer = (timerLength) => {
-    // console.log(timerLength);
     let time = timerLength * 60
-    // console.log(time);
     let runningTimer = setInterval(() => {
-      this.setState({
-        idTimer: runningTimer
-      })
       time -= 1
-      this.setState({
-        currentTime: `${time}`
+      this.setState({ 
+        currentTime: `${time}`,
+        idTimer: runningTimer 
       })
+      if (time === 0) {
+        this.setState({ 
+          toggleTimer: false,
+         })
+      }
     }, 1000)
   }
 
   setCurrentTime = (amountOfTime) => {
-    this.state.currentTime = amountOfTime
+    console.log(amountOfTime);
+    this.setState({ currentTime: `${amountOfTime}` })
   }
 
   setToggleTimer = () => {
     if (this.state.toggleTimer) {
       clearInterval(this.state.idTimer)
-      this.state.currentTime = 25;
-      this.state.toggleTimer = false;
+      this.setState({
+        currentTime: 25,
+        toggleTimer: false
+      })
     } else {
-      this.state.toggleTimer = true;
+      this.setState({ toggleTimer: true })
       if (this.state.cycle === "Work"){
         this.startPomoTimer(this.state.workTime)
       } else if (this.state.cycle === "Break") {
@@ -52,35 +56,29 @@ export default class App extends Component {
   }
 
   increaseWorkTime = () => {
-    this.setState({
-      workTime: this.state.workTime += 1
-    })
+    this.setState({ workTime: this.state.workTime += 1 })
     this.setCurrentTime(this.state.workTime)
-    this.state.cycle = "Work"
+    this.setState({ cycle: "Work" })
   }
 
   decreaseWorkTime = () => {
-    this.setState({
-      workTime: this.state.workTime -= 1
-    })
+    this.setState({ workTime: this.state.workTime -= 1 })
     this.setCurrentTime(this.state.workTime)
-    this.state.cycle = "Work"
+    this.setState({ cycle: "Work" })
   }
 
   increaseBreakTime = () => {
-    this.setState({
-      breakTime: this.state.breakTime += 1
-    })
+    this.setState({ breakTime: (this.state.breakTime += 1) })
     this.setCurrentTime(this.state.breakTime)
-    this.state.cycle = "Break"
+    this.setState({ cycle: "Break" })
+
   }
 
   decreaseBreakTime = () => {
-    this.setState({
-      breakTime: this.state.breakTime -= 1
-    })
+    this.setState({ breakTime: this.state.breakTime -= 1 })
     this.setCurrentTime(this.state.breakTime)
-    this.state.cycle = "Break"
+    this.setState({ cycle: "Break" })
+
   }
 
   render () {
