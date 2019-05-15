@@ -3,6 +3,7 @@ import React, { Component } from 'react';
 import './App.css';
 import Timer from './components/Timer';
 import TimerControllers from './components/TimerControllers'
+import TodoForm from './components/TodoForm'
 
 export default class App extends Component {
   constructor () {
@@ -13,12 +14,14 @@ export default class App extends Component {
       cycle: "Work",
       workTime: 25,
       breakTime: 5,
-      currentTime: 25
+      currentTime: 25,
+      todos: []
     }
   }
 
   startPomoTimer = (timerLength) => {
     let time = timerLength * 60
+    clearInterval(this.state.idTime);
     let runningTimer = setInterval(() => {
       time -= 1
       this.setState({ 
@@ -89,6 +92,11 @@ export default class App extends Component {
      })
   }
 
+  addTodo = (todoItem) => {
+    console.log(todoItem);
+    
+  }
+
   render () {
     return (
       <div className="app-main container">
@@ -112,6 +120,9 @@ export default class App extends Component {
           decreaseWorkTime={this.decreaseWorkTime}
           increaseBreakTime={this.increaseBreakTime}
           decreaseBreakTime={this.decreaseBreakTime}
+        />
+        <TodoForm 
+          addTodo={this.addTodo}
         />
     </div>  
     );

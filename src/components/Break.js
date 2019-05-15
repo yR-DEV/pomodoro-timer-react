@@ -13,6 +13,7 @@ export default class Break extends Component {
     render() {
         return (
             <div className="break row">
+            <h1>Break TIME</h1>
                 <button className="btn btn-info" onClick={this.handleBreakIncrease}>+</button>
                 <h1>{this.props.breakTime}</h1>
                 <button className="btn btn-info" onClick={this.handleBreakDecrease}>-</button>
