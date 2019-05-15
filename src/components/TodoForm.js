@@ -21,11 +21,13 @@ export default class TodoForm extends React.Component {
 
     render () {
         return (
-            <form onSubmit={this.submitTodo} className="form">
-                <input type="text" name="title" onChange={this.handleChange} />
-                <input type="text" name="description" onChange={this.handleChange} />
-                <input type="submit" value="Add New Todo" />
-            </form>
+            <div className="container px-5 pb-4">
+                <form onSubmit={this.submitTodo} className="">
+                    <input type="text" className="form-group form-control" name="title" value="Todo Item Title Here" onChange={this.handleChange} />
+                    <input type="text" className="form-group form-control" name="description" value="Todo Item Description Here" onChange={this.handleChange} />
+                    <input type="submit" className="btn btn-info" value="Add New Todo" />
+                </form>
+            </div>
         )
     }
 }

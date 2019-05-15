@@ -4,6 +4,7 @@ import './App.css';
 import Timer from './components/Timer';
 import TimerControllers from './components/TimerControllers'
 import TodoForm from './components/TodoForm'
+import TodosContainer from './components/TodosContainer'
 
 export default class App extends Component {
   constructor () {
@@ -15,7 +16,18 @@ export default class App extends Component {
       workTime: 25,
       breakTime: 5,
       currentTime: 25,
-      todos: []
+      todos: [
+        {
+          id: 234234234,
+          title: "someTitle",
+          description: "someDescription"
+        },
+        {
+          id: 2342342232334,
+          title: "anpother",
+          description: "something else"
+        }
+      ]
     }
   }
 
@@ -93,8 +105,18 @@ export default class App extends Component {
   }
 
   addTodo = (todoItem) => {
-    console.log(todoItem);
+    const newTodo = {...todoItem, id: Date.now()}
+    this.setState({
+      todos: [...this.state.todos, newTodo]
+    })
+    console.log(this.state);
     
+  }
+
+  deleteTodo = (id) => {
+    console.log(id, 'CLICKED');
+    const todos = this.state.todos.filter(todo => todo.id !== id)
+    this.setState({ todos })
   }
 
   render () {
@@ -121,9 +143,17 @@ export default class App extends Component {
           increaseBreakTime={this.increaseBreakTime}
           decreaseBreakTime={this.decreaseBreakTime}
         />
-        <TodoForm 
-          addTodo={this.addTodo}
-        />
+          <div className="container text-center todo-form">
+          <TodoForm 
+            addTodo={this.addTodo}
+          />
+        </div>
+        <div className="container text-center">
+          <TodosContainer 
+            todos={this.state.todos}
+            deleteTodo={this.deleteTodo}
+          />
+        </div>
     </div>  
     );
   }
