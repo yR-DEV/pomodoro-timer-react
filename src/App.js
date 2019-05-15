@@ -43,7 +43,9 @@ export default class App extends Component {
       clearInterval(this.state.idTimer)
       this.setState({
         currentTime: 25,
-        toggleTimer: false
+        toggleTimer: false,
+        workTime: 25,
+        breakTime: 5
       })
     } else {
       this.setState({ toggleTimer: true })
@@ -56,35 +58,41 @@ export default class App extends Component {
   }
 
   increaseWorkTime = () => {
-    this.setState({ workTime: this.state.workTime += 1 })
-    this.setCurrentTime(this.state.workTime)
-    this.setState({ cycle: "Work" })
+    this.setState({ 
+      workTime: this.state.workTime + 1,
+      currentTime: this.state.workTime + 1,
+      cycle: "Work"
+     })
   }
 
   decreaseWorkTime = () => {
-    this.setState({ workTime: this.state.workTime -= 1 })
-    this.setCurrentTime(this.state.workTime)
-    this.setState({ cycle: "Work" })
+    this.setState({ 
+      workTime: this.state.workTime - 1,
+      currentTime: this.state.workTime - 1,
+      cycle: "Work"
+     })
   }
 
   increaseBreakTime = () => {
-    this.setState({ breakTime: (this.state.breakTime += 1) })
-    this.setCurrentTime(this.state.breakTime)
-    this.setState({ cycle: "Break" })
-
+    this.setState({ 
+      breakTime: this.state.breakTime + 1,
+      currentTime: this.state.breakTime + 1,
+      cycle: "Break"
+     })
   }
 
   decreaseBreakTime = () => {
-    this.setState({ breakTime: this.state.breakTime -= 1 })
-    this.setCurrentTime(this.state.breakTime)
-    this.setState({ cycle: "Break" })
-
+    this.setState({ 
+      breakTime: this.state.breakTime - 1,
+      currentTime: this.state.breakTime - 1,
+      cycle: "Break"
+     })
   }
 
   render () {
     return (
-      <div className="app-main">
-        <h1>P O M O - T I M 3 R</h1>
+      <div className="app-main container">
+        <h1 className="display-1 text-center">P O M O - T I M 3 R</h1>
         <Timer
           cycle={this.state.cycle} 
           workTime={this.state.workTime}
@@ -105,7 +113,7 @@ export default class App extends Component {
           increaseBreakTime={this.increaseBreakTime}
           decreaseBreakTime={this.decreaseBreakTime}
         />
-      </div>
+    </div>  
     );
   }
 }

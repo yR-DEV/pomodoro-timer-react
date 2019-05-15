@@ -31,3 +31,25 @@
     transform: rotate(360deg);
   }
 }
+
+.header-main {
+  font-size: 50px;
+}
+
+.app-main {
+  padding-top: 20px;
+}
+
+.break {
+  margin: auto;
+}
+
+.work {
+  padding-bottom: 20px;
+  margin: auto;
+}
+
+.current-time {
+  font-size: 90px;
+  font-weight: bold;
+}

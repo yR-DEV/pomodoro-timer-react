@@ -8,10 +8,12 @@ export default class Timer extends Component {
 
     render () {
         return (
-            <div className="timer">
+            <div className="timer text-center">
                 <span className="countdown" onClick={this.timer}>
-                    <h1>TIMERRRR</h1>
-                    {this.props.currentTime}
+                    <h1 className="display-3">TIMERRRR (click me)</h1>
+                    <div className="current-time">
+                        {this.props.currentTime}
+                    </div>
                 </span>
                 <div>{this.props.cycle}</div>
             </div>

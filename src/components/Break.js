@@ -12,10 +12,10 @@ export default class Break extends Component {
 
     render() {
         return (
-            <div className="break">
-                <button onClick={this.handleBreakIncrease}>+</button>
+            <div className="break row">
+                <button className="btn btn-info" onClick={this.handleBreakIncrease}>+</button>
                 <h1>{this.props.breakTime}</h1>
-                <button onClick={this.handleBreakDecrease}>-</button>
+                <button className="btn btn-info" onClick={this.handleBreakDecrease}>-</button>
             </div>
         );
     }
